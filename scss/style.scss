@@ -84,34 +84,40 @@ body{
 }
 
 .slider{
-	@include border(blue);
-	height: 500px;
 	position: relative;
+	margin-top: 50px;
 	&__wrap{
-		@include border(green);
 		height: 100%;
 	}
 	&__item{
-		@include border(red);
 		height: 100%;
 	}
 	&__arrow{
-		@include border(orange);
 		position: absolute;
 		width: 50px;
 		top: 0;
 		bottom: 0;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image: url(../img/left_arrow.png);
 		&--prev{
 			left: 0;
+			&:hover,&:focus,&:active{
+				transform: scale(1.2);
+			}
 		}
 		&--next{
 			right: 0;
+			transform: rotate(180deg);
+			&:hover,&:focus,&:active{
+				transform: rotate(180deg) scale(1.2);
+			}
 		}
+		
 	}
 	&__dots{
-		@include border(purple);
 		position: absolute;
-		bottom: 0;
+		bottom: -50px;
 		left: 0;
 		right: 0;
 		padding: 0;
@@ -120,7 +126,7 @@ body{
 		& li{
 			display: inline-block;
 			margin: 5px;
-			a {
+			& a {
 				display: inline-block;
 				width: 10px;
 				height: 10px;
@@ -138,3 +144,128 @@ body{
 		}
 	}
 }
+
+.profile{
+	display: flex;
+	align-items: stretch;
+	height: 100%;
+	&__section{
+		width: 50%;
+		padding: 80px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__section + &__section{
+		border-left: 1px solid $primaryColor;
+	}
+	&__image{
+		@include border($primaryColor);
+		width: 100%;
+		position: relative;
+		z-index: 1;
+	}
+	&__image-wrap{
+		@include border($primaryColor);
+		padding: 15px;
+		font-size: 0;
+		position: relative;
+		&:before,
+		&:after{
+			content: '';
+			display: inline-block;
+			width: 102%;
+			height: 220px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #fff;
+		}
+		&:before{
+			transform: translate(-50%, -50%) rotate(90deg);
+		}
+	}
+
+	&__name{
+		font-size: 3.6rem;
+		font-family: $titleFont;
+		color: #666;
+		font-weight: 900;
+		position: relative;
+		margin-bottom: 60px;
+		&:after{
+			content: "";
+			display: inline-block;
+			width: 100px;
+			border-bottom: 1px solid $primaryColor;
+			position: absolute;
+			bottom: -35px;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	&__text{
+		position: relative;
+		margin-bottom: 50px;
+		&:after{
+			content: "";
+			display: inline-block;
+			width: 100px;
+			height: 5px;
+			background-image: linear-gradient(to right, $primaryColor 0, $primaryColor 20%, transparent 20%, transparent 35%, $primaryColor 35%, $primaryColor 65%, transparent 65%, transparent 80%, $primaryColor 80%, $primaryColor 100%);
+			position: absolute;
+			bottom: -25px;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	&__post{
+		font-size: 2.4rem;
+		color: #666;
+	}
+	&__link{
+		text-transform: uppercase;
+		text-decoration: none;
+		font-family: $titleFont;
+		font-size: 1.4rem;
+		color: #666;
+		font-weight: 900;
+		@include border($primaryColor);
+		display: inline-block;
+		padding: 5px 12px;
+		&:hover, &:focus, &:active{
+			background-color: #ecbd01;
+			box-shadow: -5px -3px grey;
+			color: #fff;
+		}
+	}
+	&__socials{
+		list-style-type: none;
+		padding: 0;
+		li{
+			display: inline-block;
+			margin-right: 5px;
+			a{
+				display: inline-block;
+				width: 2.8rem;
+				height: 2.8rem;
+				line-height: 2.8rem;
+				font-size: 0.9em;
+				color: #ccc;
+				@include border(#ccc);
+				border-radius: 50%;
+				&:hover{
+					@include border($primaryColor);
+					color: $primaryColor;
+					transform: scale(1.4);
+				}
+			}
+		}
+	}
+}
+
+
+
